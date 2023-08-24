@@ -1,7 +1,7 @@
-CC = clang++
-CXX = clang++
+CC = g++
+CXX = g++
 CXXFLAGS = -std=c++11 -MMD
-LDFLAGS = -lwayland-client -lwayland-egl -lEGL -lGLESv2
+LDFLAGS = -lwayland-client -lwayland-egl -lEGL -lGLESv2 -lcairo
 SOURCES = \
 	callback.cc \
 	compositor.cc \
@@ -25,7 +25,7 @@ test: waytest
 	./waytest
 
 waytest: $(OBJECTS)
-	$(CC) $(LDFLAGS) $(CXXFLAGS) $^ -o $@
+	$(CC) -o $@ $^ $(LDFLAGS) $(CXXFLAGS)
 
 clean:
 	$(RM) $(OBJECTS) $(DEPS) *~ waytest
